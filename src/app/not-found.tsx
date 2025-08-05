@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Page Not Found",
+};
+
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -25,6 +29,3 @@ export default function NotFound() {
     </div>
   );
 }
-export const metadata = {
-  title: "Not Found",
-};

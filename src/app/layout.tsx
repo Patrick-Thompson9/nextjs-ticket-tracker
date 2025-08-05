@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     default: "Next.js Ticket Tracker",
   },
   description: "A simple ticket tracking application built with Next.js",
+  applicationName: "Next.js Ticket Tracker",
 };
 
 export default function RootLayout({
