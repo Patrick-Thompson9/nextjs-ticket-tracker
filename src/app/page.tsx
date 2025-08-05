@@ -5,7 +5,7 @@ export default function Home() {
     <div className="bg-black bg-home-img bg-cover bg-center">
       <main className="flex flex-col justify-center text-center max-w-5xl mx-auto h-dvh">
         <div className="flex flex-col gap-6 p-12 rounded-xl bg-black/90 w-4/5 sm:max-w-96 mx-auto text-white small:text-2xl">
-          <h1 className="text-4xl">
+          <h1 className="text-4xl font-bold">
             Patrick&apos;s IT <br /> Ticket Tracker
           </h1>
           <address>123 Main St, Anytown, Scotland</address>
@@ -14,7 +14,7 @@ export default function Home() {
             Phone: <Link href="tel:+441234567890">+44 1234 567890</Link>
           </p>
           <p>
-            Email:
+            Email:{" "}
             <Link href="mailto:patrick_thompson9@icloud.com">
               patrick_thompson9@icloud.com
             </Link>
