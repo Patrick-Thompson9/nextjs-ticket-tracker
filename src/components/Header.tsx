@@ -18,7 +18,10 @@ export function Header() {
             </h1>
           </Link>
         </div>
-        <div className="flex items-center"></div>
+        <div className="flex items-center">
+          <NavButton icon={File} label={"Tickets"} href="/tickets" />
+          <NavButton icon={UsersRound} label={"Customers"} href="/customers" />
+        </div>
       </div>
     </header>
   );
