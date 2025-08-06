@@ -4,7 +4,7 @@ import { migrate } from "drizzle-orm/neon-http/migrator";
 const main = async () => {
   try {
     await migrate(db, {
-      migrationsFolder: "scr/db/migrations",
+      migrationsFolder: "src/db/migrations",
     });
     console.log("Database migration completed successfully.");
   } catch (error) {
