@@ -19,7 +19,7 @@ export const customers = pgTable("customers", {
   address2: varchar("address2", { length: 100 }),
   city: varchar("city", { length: 50 }).notNull(),
   state: varchar("state", { length: 2 }).notNull(),
-  postcode: varchar("Postcode", { length: 10 }).notNull(),
+  postcode: varchar("postcode", { length: 10 }).notNull(),
   notes: text("notes"),
   active: boolean("active").default(true).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
