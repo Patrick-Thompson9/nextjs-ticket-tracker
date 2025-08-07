@@ -1,4 +1,5 @@
 import { getCustomer } from "@/lib/queries/getCustomer";
+import BackButton from "@/components/BackButton";
 
 export default async function CustomerFormPage({
   searchParams,
@@ -16,9 +17,11 @@ export default async function CustomerFormPage({
           <>
             <h2>Customer ID #{customerId} not found</h2>
             <p>Please check the ID and try again.</p>
+            <BackButton title="Go Back" className="mt-4" variant="default" />
           </>
         );
       }
+      console.log("Customer data:", customer);
       // put customer form component
       return <p>customer id #{customerId}</p>;
     } else {
