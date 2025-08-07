@@ -2,7 +2,7 @@ import { db } from "@/db";
 import { customers } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
-export async function getCustomers(id: number) {
+export async function getCustomer(id: number) {
   const customer = await db
     .select()
     .from(customers)
