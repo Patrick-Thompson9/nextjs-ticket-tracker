@@ -1,5 +1,6 @@
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { customers } from "@/db/schema";
+import { z } from "zod";
 
 export const insertCustomerSchema = createInsertSchema(customers, {
   firstName: (field) => field.min(1, "First name is required"),
@@ -25,5 +26,5 @@ export const insertCustomerSchema = createInsertSchema(customers, {
 
 export const selectCustomerSchema = createSelectSchema(customers);
 
-export type insertCustomerSchemaType = typeof insertCustomerSchema.type;
-export type selectCustomerSchemaType = typeof selectCustomerSchema.type;
+export type insertCustomerSchemaType = z.infer<typeof insertCustomerSchema>;
+export type selectCustomerSchemaType = z.infer<typeof selectCustomerSchema>;
