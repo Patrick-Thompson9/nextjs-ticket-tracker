@@ -17,17 +17,17 @@ type Props = {
 
 export default function CustomerForm({ customer }: Props) {
   const defaultValues: insertCustomerSchemaType = {
-    id: customer?.id || 0,
-    firstName: customer?.firstName || "",
-    lastName: customer?.lastName || "",
-    email: customer?.email || "",
-    phone: customer?.phone || "",
-    address1: customer?.address1 || "",
-    address2: customer?.address2 || "",
-    city: customer?.city || "",
-    state: customer?.state || "",
-    postcode: customer?.postcode || "",
-    notes: customer?.notes || "",
+    id: customer?.id ?? 0,
+    firstName: customer?.firstName ?? "",
+    lastName: customer?.lastName ?? "",
+    email: customer?.email ?? "",
+    phone: customer?.phone ?? "",
+    address1: customer?.address1 ?? "",
+    address2: customer?.address2 ?? "",
+    city: customer?.city ?? "",
+    state: customer?.state ?? "",
+    postcode: customer?.postcode ?? "",
+    notes: customer?.notes ?? "",
     active: customer?.active ?? true,
   };
 
