@@ -54,6 +54,76 @@ export default function CustomerForm({ customer }: Props) {
           onSubmit={form.handleSubmit(submitForm)}
           className="flex flex-col md:flex-row gap-4 md:gap-8"
         >
+          <div className="flex flex-col gap-4 w-full max-w-xs">
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="First Name"
+              nameInSchema="firstName"
+              required
+            />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Last Name"
+              nameInSchema="lastName"
+              required
+            />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Address 1"
+              nameInSchema="address1"
+              required
+            />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Address 2"
+              nameInSchema="address2"
+              required
+            />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="City"
+              nameInSchema="city"
+              required
+            />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="State"
+              nameInSchema="state"
+              required
+            />
+          </div>
+          <InputWithLabel<insertCustomerSchemaType>
+            fieldTitle="Postcode"
+            nameInSchema="postcode"
+            required
+          />
+          <div className="flex flex-col gap-4 w-full max-w-xs">
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Email"
+              nameInSchema="email"
+              type="email"
+              required
+            />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Phone"
+              nameInSchema="phone"
+              type="tel"
+              required
+            />
+
+            <div className="flex gap-2">
+              <Button
+                type="submit"
+                className="w-3/4"
+                variant="default"
+                title="Save"
+              >
+                Save
+              </Button>
+              <Button
+                type="button"
+                variant="destructive"
+                title="Reset"
+                onClick={() => form.reset(defaultValues)}
+              >
+                Reset
+              </Button>
+            </div>
+          </div>
           <p>{JSON.stringify(form.getValues())}</p>
         </form>
       </Form>
