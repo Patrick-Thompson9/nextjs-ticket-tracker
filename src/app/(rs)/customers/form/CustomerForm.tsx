@@ -86,12 +86,13 @@ export default function CustomerForm({ customer }: Props) {
               nameInSchema="state"
               required
             />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Postcode"
+              nameInSchema="postcode"
+              required
+            />
           </div>
-          <InputWithLabel<insertCustomerSchemaType>
-            fieldTitle="Postcode"
-            nameInSchema="postcode"
-            required
-          />
+
           <div className="flex flex-col gap-4 w-full max-w-xs">
             <InputWithLabel<insertCustomerSchemaType>
               fieldTitle="Email"
@@ -109,7 +110,7 @@ export default function CustomerForm({ customer }: Props) {
             <TextAreaWithLabel<insertCustomerSchemaType>
               fieldTitle="Notes"
               nameInSchema="notes"
-              className="h-40"
+              className="h-40 mb-10"
             />
 
             <div className="flex gap-2">
@@ -131,7 +132,6 @@ export default function CustomerForm({ customer }: Props) {
               </Button>
             </div>
           </div>
-          <p>{JSON.stringify(form.getValues())}</p>
         </form>
       </Form>
     </div>
