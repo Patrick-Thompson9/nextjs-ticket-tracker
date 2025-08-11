@@ -56,17 +56,14 @@ export function SelectWithLabel<S>({
               >
                 <SelectValue placeholder="Select an option" />
               </SelectTrigger>
-              <SelectContent>
-                {data.map((item) => (
-                  <SelectItem
-                    key={`${nameInSchema}_${item.id}`}
-                    value={item.id}
-                  >
-                    {item.description}
-                  </SelectItem>
-                ))}
-              </SelectContent>
             </FormControl>
+            <SelectContent position="item-aligned">
+              {data.map((item) => (
+                <SelectItem key={`${nameInSchema}_${item.id}`} value={item.id}>
+                  {item.description}
+                </SelectItem>
+              ))}
+            </SelectContent>
           </Select>
           <FormMessage />
         </FormItem>
