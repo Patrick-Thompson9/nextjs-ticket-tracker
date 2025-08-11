@@ -6,6 +6,8 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/inputs/InputWithLabel";
 import { TextAreaWithLabel } from "@/components/inputs/TextAreaWithLabel";
+import { SelectWithLabel } from "@/components/inputs/SelectWithLabel";
+import { StatesArray } from "@/constants/StatesArray";
 
 import {
   insertCustomerSchema,
@@ -81,10 +83,10 @@ export default function CustomerForm({ customer }: Props) {
               nameInSchema="city"
               required
             />
-            <InputWithLabel<insertCustomerSchemaType>
+            <SelectWithLabel<insertCustomerSchemaType>
               fieldTitle="State"
               nameInSchema="state"
-              required
+              data={StatesArray}
             />
             <InputWithLabel<insertCustomerSchemaType>
               fieldTitle="Postcode"
