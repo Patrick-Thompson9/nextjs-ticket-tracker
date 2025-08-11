@@ -76,7 +76,6 @@ export default function CustomerForm({ customer }: Props) {
             <InputWithLabel<insertCustomerSchemaType>
               fieldTitle="Address 2"
               nameInSchema="address2"
-              required
             />
             <InputWithLabel<insertCustomerSchemaType>
               fieldTitle="City"
