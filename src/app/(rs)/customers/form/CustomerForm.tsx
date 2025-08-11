@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { InputWithLabel } from "@/components/inputs/InputWithLabel";
 
 import {
   insertCustomerSchema,
@@ -51,7 +52,7 @@ export default function CustomerForm({ customer }: Props) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(submitForm)}
-          className="flex flex-col sm:flex-row gap-4 sm:gap-8"
+          className="flex flex-col md:flex-row gap-4 md:gap-8"
         >
           <p>{JSON.stringify(form.getValues())}</p>
         </form>
