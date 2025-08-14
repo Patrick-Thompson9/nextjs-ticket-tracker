@@ -20,9 +20,10 @@ import { type selectCustomerSchemaType } from "@/zod-schemas/customer";
 type Props = {
   customer: selectCustomerSchemaType;
   ticket?: selectTicketSchemaType;
+  techs?: { id: string; description: string }[];
 };
 
-export default function TicketForm({ customer, ticket }: Props) {
+export default function TicketForm({ customer, ticket, techs }: Props) {
   const defaultValues: insertTicketSchemaType = {
     id: ticket?.id ?? "(New)",
     customerId: ticket?.customerId ?? customer.id,

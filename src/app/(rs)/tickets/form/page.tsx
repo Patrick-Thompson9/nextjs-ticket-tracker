@@ -4,6 +4,11 @@ import BackButton from "@/components/BackButton";
 import * as Sentry from "@sentry/nextjs";
 import TicketForm from "@/app/(rs)/tickets/form/TicketForm";
 
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Users, init as kindeInit } from "@kinde/management-api-js";
+import { get } from "http";
+import { desc } from "drizzle-orm";
+
 export default async function ticketsFormPage({
   searchParams,
 }: {
@@ -26,6 +31,14 @@ export default async function ticketsFormPage({
         </>
       );
     }
+
+    const { getPermission, getUser } = getKindeServerSession();
+    const [managerPermission, user] = await Promise.all([
+      getPermission("manager"),
+      getUser(),
+    ]);
+    const isManager = managerPermission?.isGranted;
+
     if (customerId) {
       // customerId is defined
       const customer = await getCustomer(Number(customerId));
@@ -54,8 +67,17 @@ export default async function ticketsFormPage({
       }
       // customer found and active
       // return ticket form
-      console.log("Customer data:", customer);
-      return <TicketForm customer={customer} />;
+      if (isManager) {
+        kindeInit(); // Initialize Kinde Management API
+        const { users } = await Users.getUsers();
+
+        const techs = users
+          ? users.map((user) => ({ id: user.email!, description: user.email! }))
+          : [];
+        return <TicketForm customer={customer} techs={techs} />;
+      } else {
+        return <TicketForm customer={customer} />;
+      }
     }
     if (ticketId) {
       // ticketId is defined
