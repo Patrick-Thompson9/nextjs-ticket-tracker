@@ -21,6 +21,7 @@ import {
 import { useAction } from "next-safe-action/hooks";
 import { saveCustomerAction } from "@/app/actions/saveCustomerAction";
 import { toast } from "sonner";
+import { LoaderCircle } from "lucide-react";
 
 type Props = {
   customer?: selectCustomerSchemaType;
@@ -66,7 +67,7 @@ export default function CustomerForm({ customer }: Props) {
   });
 
   async function submitForm(data: insertCustomerSchemaType) {
-    console.log("Form submitted with data:", data);
+    executeSave(data);
   }
 
   return (
@@ -155,14 +156,24 @@ export default function CustomerForm({ customer }: Props) {
                 className="w-3/4"
                 variant="default"
                 title="Save"
+                disabled={isSaving}
               >
-                Save
+                {isSaving ? (
+                  <>
+                    <LoaderCircle className="animate-spin" /> Saving
+                  </>
+                ) : (
+                  "Save"
+                )}
               </Button>
               <Button
                 type="button"
                 variant="destructive"
                 title="Reset"
-                onClick={() => form.reset(defaultValues)}
+                onClick={() => {
+                  form.reset(defaultValues);
+                  resetSaveAction();
+                }}
               >
                 Reset
               </Button>
