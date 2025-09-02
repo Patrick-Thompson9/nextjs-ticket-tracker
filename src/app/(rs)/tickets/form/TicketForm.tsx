@@ -8,7 +8,6 @@ import { InputWithLabel } from "@/components/inputs/InputWithLabel";
 import { TextAreaWithLabel } from "@/components/inputs/TextAreaWithLabel";
 import { SelectWithLabel } from "@/components/inputs/SelectWithLabel";
 import { CheckboxWithLabel } from "@/components/inputs/CheckboxWithLabel";
-import { StatesArray } from "@/constants/StatesArray";
 
 import {
   insertTicketSchema,
