@@ -18,6 +18,10 @@ import {
   type selectCustomerSchemaType,
 } from "@/zod-schemas/customer";
 
+import { useAction } from "next-safe-action/hooks";
+import { saveCustomerAction } from "@/app/actions/saveCustomerAction";
+import { toast } from "sonner";
+
 type Props = {
   customer?: selectCustomerSchemaType;
 };
@@ -45,6 +49,20 @@ export default function CustomerForm({ customer }: Props) {
     mode: "onBlur",
     resolver: zodResolver(insertCustomerSchema),
     defaultValues,
+  });
+
+  const {
+    execute: executeSave,
+    result: saveResult,
+    isExecuting: isSaving,
+    reset: resetSaveAction,
+  } = useAction(saveCustomerAction, {
+    onSuccess({ data }) {
+      toast.success("Success!", { description: data?.message });
+    },
+    onError({ error }) {
+      toast.error("Error!", { description: "Save Failed" });
+    },
   });
 
   async function submitForm(data: insertCustomerSchemaType) {
