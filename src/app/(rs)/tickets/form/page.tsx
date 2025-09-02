@@ -7,6 +7,25 @@ import TicketForm from "@/app/(rs)/tickets/form/TicketForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Users, init as kindeInit } from "@kinde/management-api-js";
 
+export async function generateMetaData({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
+  const { customerId, ticketId } = await searchParams;
+  if (!customerId && !ticketId)
+    return {
+      title: "Missing Ticket Id or Customer ID",
+    };
+
+  if (customerId)
+    return {
+      title: `New Ticket for Customer #${customerId}`,
+    };
+
+  if (ticketId) return { title: `Edit Ticket #${ticketId}` };
+}
+
 export default async function TicketsFormPage({
   searchParams,
 }: {
