@@ -7,7 +7,7 @@ import TicketForm from "@/app/(rs)/tickets/form/TicketForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Users, init as kindeInit } from "@kinde/management-api-js";
 
-export default async function ticketsFormPage({
+export default async function TicketsFormPage({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -103,7 +103,8 @@ export default async function ticketsFormPage({
           : [];
         return <TicketForm customer={customer} ticket={ticket} techs={techs} />;
       } else {
-        const isEditable = user?.email === ticket.tech;
+        const isEditable =
+          user?.email?.toLowerCase() === ticket.tech.toLowerCase();
         return (
           <TicketForm
             customer={customer}
