@@ -6,8 +6,6 @@ import TicketForm from "@/app/(rs)/tickets/form/TicketForm";
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Users, init as kindeInit } from "@kinde/management-api-js";
-import { get } from "http";
-import { desc } from "drizzle-orm";
 
 export default async function ticketsFormPage({
   searchParams,
@@ -54,6 +52,7 @@ export default async function ticketsFormPage({
           </>
         );
       }
+
       if (!customer.active) {
         return (
           <>
@@ -95,9 +94,24 @@ export default async function ticketsFormPage({
       // found ticket
       const customer = await getCustomer(ticket.customerId);
 
-      console.log("Ticket data:", ticket);
-      console.log("Customer data:", customer);
-      return <TicketForm customer={customer} ticket={ticket} />;
+      if (isManager) {
+        kindeInit(); // Initialize Kinde Management API
+        const { users } = await Users.getUsers();
+
+        const techs = users
+          ? users.map((user) => ({ id: user.email!, description: user.email! }))
+          : [];
+        return <TicketForm customer={customer} ticket={ticket} techs={techs} />;
+      } else {
+        const isEditable = user?.email === ticket.tech;
+        return (
+          <TicketForm
+            customer={customer}
+            ticket={ticket}
+            isEditable={isEditable}
+          />
+        );
+      }
     }
   } catch (error) {
     if (error instanceof Error) {
