@@ -22,6 +22,7 @@ import { useAction } from "next-safe-action/hooks";
 import { saveCustomerAction } from "@/app/actions/saveCustomerAction";
 import { toast } from "sonner";
 import { LoaderCircle } from "lucide-react";
+import { DisplayServerActionResponse } from "@/components/DisplayServerActionResponse";
 
 type Props = {
   customer?: selectCustomerSchemaType;
@@ -55,11 +56,13 @@ export default function CustomerForm({ customer }: Props) {
   const {
     execute: executeSave,
     result: saveResult,
-    isExecuting: isSaving,
+    isPending: isSaving,
     reset: resetSaveAction,
   } = useAction(saveCustomerAction, {
     onSuccess({ data }) {
-      toast.success("Success!", { description: data?.message });
+      if (data?.message) {
+        toast.success("Success!", { description: data?.message });
+      }
     },
     onError({ error }) {
       toast.error("Error!", { description: "Save Failed" });
@@ -72,10 +75,11 @@ export default function CustomerForm({ customer }: Props) {
 
   return (
     <div className="flex flex-col gap-1 sm:px-8">
+      <DisplayServerActionResponse result={saveResult} />
       <div>
         <h2 className="text-2xl font-bold">
           {customer?.id ? "Edit" : "New"} Customer Form{" "}
-          {customer?.id ? `#${customer.id}` : "Form"}
+          {customer?.id ? `#${customer.id}` : ""}
         </h2>
       </div>
       <Form {...form}>
