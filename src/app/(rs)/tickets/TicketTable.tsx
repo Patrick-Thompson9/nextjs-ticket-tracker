@@ -91,7 +91,7 @@ export default function TicketTable({ data }: Props) {
   const table = useReactTable({
     data,
     columns: columns.flat(),
-    initialState: { pagination: { pageSize: 5 } },
+    initialState: { pagination: { pageSize: 10 } },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
