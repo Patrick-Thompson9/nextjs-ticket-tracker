@@ -21,7 +21,7 @@ export default function NotFound() {
         sizes="300px"
       />
       <Link
-        href="/home"
+        href="/tickets"
         className="bg-blue-500 text-xl font-bold underline rounded-sm p-2 border-blue-800 border-2 hover:bg-blue-600"
       >
         Return Home
