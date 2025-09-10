@@ -10,8 +10,6 @@ import { SelectWithLabel } from "@/components/inputs/SelectWithLabel";
 import { CheckboxWithLabel } from "@/components/inputs/CheckboxWithLabel";
 import { StatesArray } from "@/constants/StatesArray";
 
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-
 import {
   insertCustomerSchema,
   type insertCustomerSchemaType,
@@ -26,12 +24,10 @@ import { DisplayServerActionResponse } from "@/components/DisplayServerActionRes
 
 type Props = {
   customer?: selectCustomerSchemaType;
+  isManager?: boolean | undefined;
 };
 
-export default function CustomerForm({ customer }: Props) {
-  const { getPermission, isLoading } = useKindeBrowserClient();
-  const isManager = !isLoading && getPermission("manager")?.isGranted;
-
+export default function CustomerForm({ customer, isManager = false }: Props) {
   const defaultValues: insertCustomerSchemaType = {
     id: customer?.id ?? 0,
     firstName: customer?.firstName ?? "",
@@ -144,9 +140,7 @@ export default function CustomerForm({ customer }: Props) {
               className="h-40 mb-10"
             />
 
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : isManager && customer?.id ? (
+            {isManager && customer?.id ? (
               <CheckboxWithLabel<insertCustomerSchemaType>
                 fieldTitle="Active"
                 nameInSchema="active"
