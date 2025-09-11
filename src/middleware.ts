@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export default withAuth(
   async function middleware(req: NextResponse) {
-    //console.log(req)
+    console.log(req);
   },
   {
     isReturnToCurrentPage: true,

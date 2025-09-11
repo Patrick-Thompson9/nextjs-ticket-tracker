@@ -7,7 +7,7 @@ import TicketForm from "@/app/(rs)/tickets/form/TicketForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Users, init as kindeInit } from "@kinde/management-api-js";
 
-export async function generateMetaData({
+export async function generateMetadata({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -120,10 +120,15 @@ export default async function TicketsFormPage({
         const { users } = await Users.getUsers();
 
         const techs = users
-          ? users.map((user) => ({
-              id: user.email?.toLowerCase()!,
-              description: user.email?.toLowerCase()!,
-            }))
+          ? users
+              .filter(
+                (user): user is { email: string } =>
+                  typeof user.email === "string"
+              )
+              .map((user) => ({
+                id: user.email?.toLowerCase(),
+                description: user.email?.toLowerCase(),
+              }))
           : [];
         return (
           <TicketForm
