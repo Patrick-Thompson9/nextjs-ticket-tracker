@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -19,6 +20,12 @@ export default function Home() {
               patrick_thompson9@icloud.com
             </Link>
           </p>
+          <Link href="/tickets">
+            <Button variant="default" className="w-full">
+              Continue to Ticket Tracker
+              <span className="sr-only">View Tickets</span>
+            </Button>
+          </Link>
         </div>
       </main>
     </div>
